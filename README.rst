@@ -1,5 +1,5 @@
 ===============================
-Lean Canvas Project
+Lean Forge Project
 ===============================
 
 This project implements a Lean Canvas Model using Django and HTMX for smooth UI interactions without full page reloads.
