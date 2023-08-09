@@ -1,55 +1,59 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container mx-auto px-4 py-8">
-    <div class="text-center">
-        <h1 class="text-2xl font-bold mb-4">{{ canvas.title }}</h1>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-        <section class="bg-white p-4 shadow-md" id="problem">
-            <h2 class="text-xl font-bold">Problem</h2>
-            <p>{{ canvas.problem }}</p>
-        </section>
-
-        <section class="bg-white p-4 shadow-md" id="solution">
-            <h2 class="text-xl font-bold">Solution</h2>
-            <p>{{ canvas.solution }}</p>
-        </section>
-
-        <section class="bg-white p-4 shadow-md" id="unique-value-proposition">
-            <h2 class="text-xl font-bold">Unique Value Proposition</h2>
-            <p>{{ canvas.unique_value_proposition }}</p>
-        </section>
-
-        <section class="bg-white p-4 shadow-md" id="unfair-advantage">
-            <h2 class="text-xl font-bold">Unfair Advantage</h2>
-            <p>{{ canvas.unfair_advantage }}</p>
-        </section>
-
-        <section class="bg-white p-4 shadow-md" id="customer-segments">
-            <h2 class="text-xl font-bold">Customer Segments</h2>
-            <p>{{ canvas.customer_segments }}</p>
-        </section>
-        <section class="bg-white p-4 shadow-md" id="customer-segments">
-            <h2 class="text-xl font-bold">Channel</h2>
+<div class="min-h-screen bg-gray-100 py-8">
+    <div class="container mx-auto">
+        <div class="grid grid-cols-10 gap-6 p-6 bg-white shadow-md rounded-md">
         
-        <div id="channels" hx-get="{% url 'channel_list' lean_canvas_id=canvas.id %}" hx-trigger="load">
-            <!-- Channels will be loaded here -->
+        <!-- Canvas Title in Row 1 spanning full width -->
+        <div class="col-span-10 text-center mb-6">
+            <h1 class="text-2xl font-bold">{{ canvas.title }}</h1>
         </div>
-        </section>
+        <!-- Problems section in Column 1 & 2 -->
+        <div class="bg-gray-50 border p-4 rounded shadow mb-4 col-span-2">
+            <h4 class="font-bold text-lg mb-2">Problem</h4>
+            <p>{{ canvas.problem }}</p>
+        </div>
 
-        <section class="bg-white p-4 shadow-md" id="cost-structure">
-            <h2 class="text-xl font-bold">Cost Structure</h2>
+        <!-- Solutions and Key Metrics in Column 3 & 4 -->
+        <div class="bg-gray-50 border p-4 rounded shadow mb-4 col-span-2">
+            <h4 class="font-bold text-lg mb-2">Solution</h4>
+            <p>{{ canvas.solution }}</p>
+        </div>
+
+        <!-- Unique Value Proposition in Column 5 & 6 -->
+        <div class="bg-gray-50 border p-4 rounded shadow mb-4 col-span-2">
+            <h4 class="font-bold text-lg mb-2">Unique Value Proposition</h4>
+            <p>{{ canvas.unique_value_proposition }}</p>
+        </div>
+
+        <!-- Unfair Advantage and Channels in Column 7 & 8 -->
+        <div class="bg-gray-50 border p-4 rounded shadow mb-4 col-span-2">
+            <h4 class="font-bold text-lg mb-2">Unfair Advantage</h4>
+            <p>{{ canvas.unfair_advantage }}</p>
+            <h4 class="font-bold text-lg mb-2 mt-4">Channels</h4>
+            <div id="channel-content" hx-get="{% url 'channel_list' lean_canvas_id=canvas.id %}" hx-trigger="load">
+                <!-- Channels will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Customer Segment in Column 9 & 10 -->
+        <div class="bg-gray-50 border p-4 rounded shadow mb-4 col-span-2">
+            <h4 class="font-bold text-lg mb-2">Customer Segments</h4>
+            <p>{{ canvas.customer_segments }}</p>
+        </div>
+
+        <!-- Cost Structure in Second Row Column 1 to 5 -->
+        <div class="border bg-gray-50 flex flex-col p-4 col-span-5 mt-4">
+            <h4 class="font-bold text-lg mb-2">Cost Structure</h4>
             <p>{{ canvas.cost_structure }}</p>
-        </section>
+        </div>
 
-        <section class="bg-white p-4 shadow-md" id="revenue-streams">
-            <h2 class="text-xl font-bold">Revenue Streams</h2>
+        <!-- Revenue Streams in Second Row Column 6 to 10 -->
+        <div class="border bg-gray-50 flex flex-col p-4 col-span-5 mt-4">
+            <h4 class="font-bold text-lg mb-2">Revenue Streams</h4>
             <p>{{ canvas.revenue_streams }}</p>
-        </section>
-
+        </div>
     </div>
 </div>
 {% endblock %}
