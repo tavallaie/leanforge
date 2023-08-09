@@ -1,0 +1,13 @@
+<!-- channel_partial.html -->
+<div x-data="{ editing: false, originalChannel: '{{ channel.channel }}', editedChannel: '{{ channel.channel }}' }" class="bg-white p-4 shadow-md">
+    <h2 class="text-xl font-bold cursor-pointer" x-show="!editing" @click="editing = true">
+        {{ channel.channel }}
+    </h2>
+    <form hx-post="{% url 'channel_edit' id=channel.id %}" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-swap="outerHTML" x-show="editing" x-cloak>
+        <input x-model="editedChannel" class="border p-2 rounded" type="text" name="channel_name">
+        <div class="mt-2">
+            <button type="button" class="px-4 py-2 bg-gray-300 hover:bg-gray-400 text-white rounded" @click="editing = false; editedChannel = originalChannel">Cancel</button>
+            <button type="submit" class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded">Save</button>
+        </div>
+    </form>
+</div>

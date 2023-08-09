@@ -3,7 +3,7 @@
 {% block content %}
   <div class="container mx-auto px-4 pt-16">
     <h2 class="text-4xl font-bold mb-4">New Channel</h2>
-    <form class="w-full max-w-lg" method="POST" hx-post="{% url 'channel_create' lean_canvas_id=lean_canvas_id  %}" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-target="#channels" hx-swap="outerHTML">
+    <form class="w-full max-w-lg" method="POST" hx-post="{% url 'channel_create' lean_canvas_id=lean_canvas_id  %}" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-target="#channels" hx-swap="outerHTML"  hx-trigger="submit">
       {% csrf_token %}
       <div class="flex flex-wrap -mx-3">
         {{ form.as_p }}
